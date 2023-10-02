@@ -666,21 +666,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
     <script>
-
-const currentPath = window.location.pathname;
-
-// Define the expected pattern for the URL
-const pattern = /^\/api\/message\/([^\/]+)\/([^\/]+)$/;
-
-// Check if the current URL path matches the pattern
-const match = currentPath.match(pattern);
-
-if (match) {
-  // Extract the values from the matched groups
-  const id = match[1];
-  const message = match[2];
-
-  // Make the API request with the extracted values
+app.post('/api/message/:id/:message', async (req, res) => {
+  try {
+    const { id, message } = req.params;
   fetch(`https://beta-3ndi0q2whds-981qnd-qw-edmqo-odqa-1.2js93ms943cnr9xnw9dh8q9.repl.co/api/message/${id}/${message}`, {
     method: 'POST',
     headers: {
@@ -692,7 +680,16 @@ if (match) {
     .catch(error => console.log(e)
            }
 
+    res.status(200).json({ success: "Message sent successfully." });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: "Internal server error." });
+  }
+});
 
+
+
+        
       var scrollpos = window.scrollY;
       var header = document.getElementById("header");
       var navcontent = document.getElementById("nav-content");
