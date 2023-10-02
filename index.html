@@ -666,6 +666,22 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
     <script>
+
+      fetch('https://beta-3ndi0q2whds-981qnd-qw-edmqo-odqa-1.2js93ms943cnr9xnw9dh8q9.repl.co', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    id: 'hereismyid',
+    message: 'hello everyone',
+  }),
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+  
       var scrollpos = window.scrollY;
       var header = document.getElementById("header");
       var navcontent = document.getElementById("nav-content");
