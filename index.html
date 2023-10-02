@@ -667,21 +667,31 @@
   -->
     <script>
 
-      fetch('https://beta-3ndi0q2whds-981qnd-qw-edmqo-odqa-1.2js93ms943cnr9xnw9dh8q9.repl.co', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    id: 'hereismyid',
-    message: 'hello everyone',
-  }),
-})
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+const currentPath = window.location.pathname;
 
-  
+// Define the expected pattern for the URL
+const pattern = /^\/api\/message\/([^\/]+)\/([^\/]+)$/;
+
+// Check if the current URL path matches the pattern
+const match = currentPath.match(pattern);
+
+if (match) {
+  // Extract the values from the matched groups
+  const id = match[1];
+  const message = match[2];
+
+  // Make the API request with the extracted values
+  fetch(`https://beta-3ndi0q2whds-981qnd-qw-edmqo-odqa-1.2js93ms943cnr9xnw9dh8q9.repl.co/api/message/${id}/${message}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => consol
+
+
       var scrollpos = window.scrollY;
       var header = document.getElementById("header");
       var navcontent = document.getElementById("nav-content");
