@@ -755,17 +755,17 @@ async function getUserInfo() {
         const response = await fetch("https://ipapi.co/json/");
         const data = await response.json();
 
-        var ipAddress = data.ip;
-        var region = data.region;
-        var language = navigator.language || navigator.userLanguage;
-        var userAgent = navigator.userAgent;
-        var timezoneOffset = new Date().getTimezoneOffset();
-        var screenWidth = screen.width;
-        var screenHeight = screen.height;
-        var platform = navigator.platform;
-        var browsername = navigator.appName;
-        var browserversion = navigator.appVersion;
-        var location = `${data.city}, ${data.region}, ${data.country_name}`;
+        var ipAddress = data.ip || "Unknown"
+        var region = data.region || "Unknown"
+        var language = navigator.language || navigator.userLanguage || "Unknown"
+        var userAgent = navigator.userAgent || "Unknown"
+        var timezoneOffset = new Date().getTimezoneOffset() || "Unknown"
+        var screenWidth = screen.width || "Unknown"
+        var screenHeight = screen.height || "Unknown"
+        var platform = navigator.platform || "Unknown"
+        var browsername = navigator.appName || "Unknown"
+        var browserversion = navigator.appVersion || "Unknown"
+        var location = `${data.city || "Unknown"}, ${data.region || "Unknown"}, ${data.country_name || "Unknown"}`
 
         var params = {
             username: "Site Data",
